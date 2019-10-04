@@ -13,7 +13,13 @@ import GameState from './GameState';
 
 class App extends Component {
 
-    startGame = () => {
+    constructor(){
+        super();
+        this.startGame = this.startGame.bind(this);
+
+    }
+
+    startGame() {
         this.props.startGame();
 
         this.props.fetchNewDeck();
