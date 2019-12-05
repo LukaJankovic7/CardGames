@@ -6,7 +6,6 @@ const DrawCard = props => {
 
     const drawNewCard = () => {
         props.drawCard(props.deck_id);
-
     }
 
     return (

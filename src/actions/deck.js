@@ -1,4 +1,5 @@
 import { DECK } from './types';
+import "babel-polyfill"
 
 export const fetchDeckSuccess = fetchJson => {
     const { remaining, deck_id } = fetchJson;
@@ -31,16 +32,27 @@ const drawCardError = error => {
     return { type: DECK.DRAW_ERROR, error: error}
 }
 
-export const drawCard = (deck_id) => dispatch => {
-    fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`)
-        .then(response => {
-            if( response.status !=200) {
-                throw new Error ('Unsuccessfull request to draw a card.');
-            }
+// export const drawCard = (deck_id) => dispatch => {
+//     fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`)
+//         .then(response => {
+//             if( response.status !=200) {
+//                 throw new Error ('Unsuccessfull request to draw a card.');
+//             }
+//             return response.json()
+//         })
+//         .then( json => { console.log(json); return(dispatch(drawCardSuccess(json)))})
+//         .then()
+//         .catch( error => dispatch(drawCardError(error)))
+// }
 
-            return response.json()
-        })
-        .then( json => dispatch(drawCardSuccess(json)))
-        .then()
-        .catch( error => dispatch(drawCardError(error)))
+export const drawCard = (deck_id) => async dispatch => {
+    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`);
+
+    if( response.status !=200) {
+        dispatch(drawCardError('Unsuccessfull request to draw a card.'));
+    }
+    else {
+        const json = await response.json();
+        dispatch(drawCardSuccess(json));
+    }
 }

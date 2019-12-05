@@ -21,8 +21,9 @@ const deckReducer = (state=DEFAULT_DECK, action) => {
             return {...state, message, fetchState: fetchStates.error};
 
         case DECK.DRAW_SUCCESS:
-            ({remaining, cards}=action);
-            return {...state, remaining, cards };
+            ({cards}=action);
+            ({remaining} = state);
+            return {...state, remaining: remaining-1 , cards };
 
         case DECK.DRAW_ERROR:
             ({message} =action)

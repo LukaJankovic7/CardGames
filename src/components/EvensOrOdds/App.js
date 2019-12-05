@@ -21,7 +21,7 @@ class App extends Component {
 
     startGame() {
         this.props.startGame();
-
+        
         this.props.fetchNewDeck();
     }
 

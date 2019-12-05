@@ -2,13 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {expandInstructions} from '../../actions/settings';
 import {collapseInstructions} from '../../actions/settings';
+import InstructionsStyles from './styles/instructions.scss';
 
 const Instructions = props => {
     const {instructionsExpanded, expandInstructions, collapseInstructions} = props;
 
     return(
         instructionsExpanded ? (
-            <div>
+            <div className={InstructionsStyles.wrapper}>
                 <p>Instructions: </p>
                 <p>Guess if the card is even or odd!</p>
                 <p>Click on the responding buttons to make your guess</p>
@@ -17,7 +18,7 @@ const Instructions = props => {
                 <button onClick = {collapseInstructions}>Show less</button>
             </div>
         ) : (
-            <div>
+            <div className={InstructionsStyles.wrapper}>
                 <p>Instructions: </p>
                 <p>Guess if the next card is even or odd!</p>
                 <button onClick = {expandInstructions}>Show more</button>

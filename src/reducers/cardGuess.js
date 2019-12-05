@@ -1,7 +1,7 @@
 import { SET_GUESS, SET_GAME_STARTED, DECK } from '../actions/types';
 
 const DEFAULT_GAME_STATE = {
-    cardGuess: '',
+    cardGuess: 'even',
     score: 0
 }
 

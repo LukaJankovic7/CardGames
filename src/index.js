@@ -12,7 +12,6 @@ import './index.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.subscribe( () => console.log('state', store.getState()) );
 
 ReactDOM.render(
     <BrowserRouter>
