@@ -8,6 +8,7 @@ const higherCardReducer = (state = DEFAULT_NUMBERS, action) => {
     const v1 = Math.floor(Math.random()*12) + 1 ;
     const v2 = Math.floor(Math.random()*12) + 1 ;
     let score = [];
+    localStorage.setItem('LAST_SCORE', 'N,N');
 
     if(v1>v2) score = [state.score[0]+1, state.score[1]];
     else if( v2>v1) score = [state.score[0], state.score[1]+1]; 
